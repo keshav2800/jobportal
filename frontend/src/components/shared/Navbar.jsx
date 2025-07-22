@@ -29,12 +29,12 @@ const Navbar = () => {
         }
     }
     return (
-        <div className='bg-white'>
+        <div className='bg-white mx-5'>
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16'>
-                <div>
-                    <h1 className='text-2xl font-bold'>Job<span className='text-[#F83002]'>Portal</span></h1>
-                </div>
-                <div className='flex items-center gap-12'>
+                <div className="flex items-center gap-8">
+                    <Link href="/">
+                        <h1 className='text-2xl font-bold'>JobWork</h1>
+                    </Link>
                     <ul className='flex font-medium items-center gap-5'>
                         {
                             user && user.role === 'recruiter' ? (
@@ -53,11 +53,13 @@ const Navbar = () => {
 
 
                     </ul>
+                </div>
+                <div className='flex items-center gap-12'>
                     {
                         !user ? (
                             <div className='flex items-center gap-2'>
                                 <Link to="/login"><Button variant="outline">Login</Button></Link>
-                                <Link to="/signup"><Button className="bg-[#6A38C2] hover:bg-[#5b30a6]">Signup</Button></Link>
+                                <Link to="/signup"><Button className="bg-[#108a00] hover:bg-[#148a00]">Signup</Button></Link>
                             </div>
                         ) : (
                             <Popover>

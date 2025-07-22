@@ -32,6 +32,29 @@ export const registerCompany = async (req, res) => {
         console.log(error);
     }
 }
+export const deleteCompany = async (req, res) => {
+    try {
+      const company = await Company.findById(req.params.id);
+  
+      if (!company)
+        return res.status(404).json({ success: false, message: 'Company not found' });
+  
+      /* If you have related collections (e.g. jobs), delete or detach them here.
+         Example:
+         await Job.deleteMany({ company: company._id });
+      */
+  
+      await company.deleteOne();
+  
+      return res.json({ success: true, message: 'Company deleted successfully' });
+    } catch (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ success: false, message: 'Server error, try again later' });
+    }
+  };
+
 export const getCompany = async (req, res) => {
     try {
         const userId = req.id; // logged in user id
