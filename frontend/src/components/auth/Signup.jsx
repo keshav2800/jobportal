@@ -47,16 +47,16 @@ const Signup = () => {
         try {
             dispatch(setLoading(true));
             const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
-                headers: { 'Content-Type': "multipart/form-data" },
                 withCredentials: true,
             });
             if (res.data.success) {
                 navigate("/login");
                 toast.success(res.data.message);
             }
+            console.log(res.file);
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message);
         } finally{
             dispatch(setLoading(false));
         }
