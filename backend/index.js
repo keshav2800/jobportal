@@ -16,7 +16,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:'https://jobworks.vercel.app',
+    origin: [
+        'https://jobworks.vercel.app',
+        'https://jobwork-h6wa.onrender.com',
+    ],
     credentials:true
 }
 
