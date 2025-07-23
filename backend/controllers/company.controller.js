@@ -38,12 +38,6 @@ export const deleteCompany = async (req, res) => {
   
       if (!company)
         return res.status(404).json({ success: false, message: 'Company not found' });
-  
-      /* If you have related collections (e.g. jobs), delete or detach them here.
-         Example:
-         await Job.deleteMany({ company: company._id });
-      */
-  
       await company.deleteOne();
   
       return res.json({ success: true, message: 'Company deleted successfully' });
@@ -57,7 +51,7 @@ export const deleteCompany = async (req, res) => {
 
 export const getCompany = async (req, res) => {
     try {
-        const userId = req.id; // logged in user id
+        const userId = req.id; 
         const companies = await Company.find({ userId });
         if (!companies) {
             return res.status(404).json({
@@ -73,7 +67,6 @@ export const getCompany = async (req, res) => {
         console.log(error);
     }
 }
-// get company by id
 export const getCompanyById = async (req, res) => {
     try {
         const companyId = req.params.id;
@@ -97,7 +90,6 @@ export const updateCompany = async (req, res) => {
         const { name, description, website, location } = req.body;
  
         const file = req.file;
-        // idhar cloudinary ayega
         const fileUri = getDataUri(file);
         const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
         const logo = cloudResponse.secure_url;
